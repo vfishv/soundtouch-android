@@ -10,13 +10,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.qingmei2.soundtouch.SoundStreamAudioPlayer;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView text_player_play;
     private TextView text_player_stop;
 

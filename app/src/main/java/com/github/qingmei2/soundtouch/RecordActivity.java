@@ -1,6 +1,5 @@
 package com.github.qingmei2.soundtouch;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MotionEvent;
@@ -14,10 +13,9 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.github.qingmei2.soundtouch.SoundStreamAduioRecorder;
-import com.github.qingmei2.soundtouch.SoundTouch;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class RecordActivity extends Activity {
+public class RecordActivity extends AppCompatActivity {
 
     private static final String TAG = RecordActivity.class.getSimpleName();
 
