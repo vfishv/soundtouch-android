@@ -1,4 +1,7 @@
-apply plugin: 'com.android.library'
+plugins {
+    id 'com.android.library'
+    id 'maven'
+}
 
 android {
     compileSdkVersion 31
@@ -33,4 +36,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: "file://$MAVEN_LOCAL_PATH")
+        // 唯一标识
+        pom.groupId = PUBLISH_GROUP_ID
+        // 项目名称
+        pom.artifactId = PUBLISH_ARTFACT_ID_SOUNDTOUCH
+        // 版本号
+        pom.version = PUBLISH_VERSION_CODE
+    }
 }
