@@ -14,8 +14,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.smp.soundtouchandroid.SoundStreamAduioRecorder;
-import com.smp.soundtouchandroid.SoundTouch;
+import com.github.qingmei2.soundtouch.SoundStreamAduioRecorder;
+import com.github.qingmei2.soundtouch.SoundTouch;
 
 public class RecordActivity extends Activity {
 

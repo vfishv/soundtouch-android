@@ -85,7 +85,7 @@ static int copyBytes(jbyte*, queue<jbyte>*, int);
 
 #ifdef __cplusplus
 
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_clearBytes(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_clearBytes(
 		JNIEnv *env, jobject thiz, jint track) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 
@@ -104,14 +104,14 @@ extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_clearBytes(
 	}
 }
 
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setup(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setup(
 		JNIEnv *env, jobject thiz, jint track, jint channels, jint samplingRate,
 		jint bytesPerSample, jfloat tempo, jfloat pitchSemi) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	setup(soundTouch, channels, samplingRate, bytesPerSample, tempo, pitchSemi);
 }
 
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_finish(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_finish(
 		JNIEnv *env, jobject thiz, jint track, int length) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 
@@ -127,7 +127,7 @@ extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_finish(
 	fBufferIn = NULL;
 }
 
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_putBytes(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_putBytes(
 		JNIEnv *env, jobject thiz, jint track, jbyteArray input, jint length) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 
@@ -151,7 +151,7 @@ extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_putBytes(
 	fBufferIn = NULL;
 }
 
-extern "C" DLL_PUBLIC jint Java_com_smp_soundtouchandroid_SoundTouch_getBytes(
+extern "C" DLL_PUBLIC jint Java_com_github_qingmei2_soundtouch_SoundTouch_getBytes(
 		JNIEnv *env, jobject thiz, jint track, jbyteArray get, jint toGet) {
 	queue<jbyte>* byteBufferOut = stStreams.at(track).getStream();
 
@@ -187,38 +187,38 @@ static int copyBytes(jbyte* arrayOut, queue<jbyte>* byteBufferOut, int toGet) {
 
 	return bytesWritten;
 }
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setPitchSemi(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setPitchSemi(
 		JNIEnv *env, jobject thiz, jint track, jfloat pitchSemi) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	setPitchSemi(soundTouch, pitchSemi);
 }
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setTempo(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setTempo(
 		JNIEnv *env, jobject thiz, jint track, jfloat tempo) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	setTempo(soundTouch, tempo);
 }
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setRate(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setRate(
 		JNIEnv *env, jobject thiz, jint track, jfloat rate) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	setRate(soundTouch, rate);
 }
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setRateChange(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setRateChange(
 		JNIEnv *env, jobject thiz, jint track, jfloat rateChange) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	setRateChange(soundTouch, rateChange);
 }
-extern "C" DLL_PUBLIC jlong Java_com_smp_soundtouchandroid_SoundTouch_getOutputBufferSize(
+extern "C" DLL_PUBLIC jlong Java_com_github_qingmei2_soundtouch_SoundTouch_getOutputBufferSize(
 		JNIEnv *env, jobject thiz, jint track) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	queue<jbyte>* byteBufferOut = soundTouch.getStream();
 	return byteBufferOut->size();
 }
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setTempoChange(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setTempoChange(
 		JNIEnv *env, jobject thiz, jint track, jfloat tempoChange) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	setTempoChange(soundTouch, tempoChange);
 }
-extern "C" DLL_PUBLIC void Java_com_smp_soundtouchandroid_SoundTouch_setSpeech(
+extern "C" DLL_PUBLIC void Java_com_github_qingmei2_soundtouch_SoundTouch_setSpeech(
 		JNIEnv *env, jobject thiz, jint track, jboolean speech) {
 	SoundTouchStream& soundTouch = stStreams.at(track);
 	if (speech) {

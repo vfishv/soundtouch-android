@@ -10,7 +10,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.smp.soundtouchandroid.SoundStreamAudioPlayer;
+import com.github.qingmei2.soundtouch.SoundStreamAudioPlayer;
 
 import java.io.File;
 import java.io.FileOutputStream;
