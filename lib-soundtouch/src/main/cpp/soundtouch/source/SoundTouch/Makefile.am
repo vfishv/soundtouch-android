@@ -1,7 +1,5 @@
 ## Process this file with automake to create Makefile.in
 ##
-## $Id: Makefile.am 178 2014-01-06 18:40:23Z oparviai $
-##
 ## This file is part of SoundTouch, an audio processing library for pitch/time adjustments
 ## 
 ## SoundTouch is free software; you can redistribute it and/or modify it under the
@@ -22,9 +20,10 @@ include $(top_srcdir)/config/am_include.mk
 
 
 # set to something if you want other stuff to be included in the distribution tarball
-EXTRA_DIST=SoundTouch.dsp SoundTouch.dsw SoundTouch.sln SoundTouch.vcproj
+EXTRA_DIST=SoundTouch.sln SoundTouch.vcxproj
 
-noinst_HEADERS=AAFilter.h cpu_detect.h cpu_detect_x86.cpp FIRFilter.h RateTransposer.h TDStretch.h PeakFinder.h
+noinst_HEADERS=AAFilter.h cpu_detect.h cpu_detect_x86.cpp FIRFilter.h RateTransposer.h TDStretch.h PeakFinder.h \
+    InterpolateCubic.h InterpolateLinear.h InterpolateShannon.h
 
 lib_LTLIBRARIES=libSoundTouch.la
 #
@@ -34,7 +33,7 @@ libSoundTouch_la_SOURCES=AAFilter.cpp FIRFilter.cpp FIFOSampleBuffer.cpp    \
     InterpolateShannon.cpp
 
 # Compiler flags
-AM_CXXFLAGS=-O3 -fcheck-new -I../../include
+#AM_CXXFLAGS+=
 
 # Compile the files that need MMX and SSE individually.
 libSoundTouch_la_LIBADD=libSoundTouchMMX.la libSoundTouchSSE.la
@@ -65,6 +64,8 @@ libSoundTouchMMX_la_CXXFLAGS = $(AM_CXXFLAGS)
 libSoundTouchSSE_la_CXXFLAGS = $(AM_CXXFLAGS)
 endif
 
+# Modify the default 0.0.0 to LIB_SONAME.0.0
+libSoundTouch_la_LDFLAGS=-version-info @LIB_SONAME@
 
 # other linking flags to add
 # noinst_LTLIBRARIES = libSoundTouchOpt.la

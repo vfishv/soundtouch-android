@@ -9,6 +9,8 @@ add_library(soundtouch
         soundtouch/source/SoundTouch/FIFOSampleBuffer.cpp
         soundtouch/source/SoundTouch/FIRFilter.cpp
         soundtouch/source/SoundTouch/cpu_detect_x86.cpp
+        soundtouch/source/SoundTouch/sse_optimized.cpp
+        soundtouch/source/SoundStretch/WavFile.cpp
         soundtouch/source/SoundTouch/RateTransposer.cpp
         soundtouch/source/SoundTouch/SoundTouch.cpp
         soundtouch/source/SoundTouch/TDStretch.cpp

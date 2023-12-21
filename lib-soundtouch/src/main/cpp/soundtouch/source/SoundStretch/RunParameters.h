@@ -8,13 +8,6 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 //
-// Last changed  : $Date: 2009-05-17 19:48:30 +0300 (Sun, 17 May 2009) $
-// File revision : $Revision: 4 $
-//
-// $Id: RunParameters.h 72 2009-05-17 16:48:30Z oparviai $
-//
-////////////////////////////////////////////////////////////////////////////////
-//
 // License :
 //
 //  SoundTouch audio processing library
@@ -63,8 +56,8 @@ public:
     int   quick;
     int   noAntiAlias;
     float goalBPM;
-    BOOL  detectBPM;
-    BOOL  speech;
+    bool  detectBPM;
+    bool  speech;
 
     RunParameters(const int nParams, const char * const paramStr[]);
 };

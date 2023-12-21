@@ -8,13 +8,6 @@
 ///
 ////////////////////////////////////////////////////////////////////////////////
 //
-// Last changed  : $Date: 2014-01-07 21:41:23 +0200 (Tue, 07 Jan 2014) $
-// File revision : $Revision: 4 $
-//
-// $Id: main.cpp 187 2014-01-07 19:41:23Z oparviai $
-//
-////////////////////////////////////////////////////////////////////////////////
-//
 // License :
 //
 //  SoundTouch audio processing library
@@ -65,8 +58,8 @@ using namespace std;
 
 static const char _helloText[] = 
     "\n"
-    "   SoundStretch v%s -  Written by Olli Parviainen 2001 - 2014\n"
-    "==================================================================\n"
+    "   SoundStretch v%s -  Copyright (c) Olli Parviainen\n"
+    "=========================================================\n"
     "author e-mail: <oparviai"
     "@"
     "iki.fi> - WWW: http://www.surina.net/soundtouch\n"
@@ -113,7 +106,6 @@ static void openFiles(WavInFile **inFile, WavOutFile **outFile, const RunParamet
         *outFile = NULL;
     }
 }
-
 
 
 // Sets the 'SoundTouch' object up according to input file sound format & 
@@ -172,7 +164,6 @@ static void setup(SoundTouch *pSoundTouch, const WavInFile *inFile, const RunPar
 }
 
 
-
 // Processes the sound
 static void process(SoundTouch *pSoundTouch, WavInFile *inFile, WavOutFile *outFile)
 {
@@ -225,7 +216,6 @@ static void process(SoundTouch *pSoundTouch, WavInFile *inFile, WavOutFile *outF
 }
 
 
-
 // Detect BPM rate of inFile and adjust tempo setting accordingly if necessary
 static void detectBPM(WavInFile *inFile, RunParameters *params)
 {
@@ -239,7 +229,7 @@ static void detectBPM(WavInFile *inFile, RunParameters *params)
     fflush(stderr);
 
     nChannels = (int)inFile->getNumChannels();
-    assert(BUFF_SIZE % nChannels == 0);
+    int readSize = BUFF_SIZE - BUFF_SIZE % nChannels;   // round read size down to multiple of num.channels 
 
     // Process the 'inFile' in small blocks, repeat until whole file has 
     // been processed
@@ -248,7 +238,7 @@ static void detectBPM(WavInFile *inFile, RunParameters *params)
         int num, samples;
 
         // Read sample data from input file
-        num = inFile->read(sampleBuffer, BUFF_SIZE);
+        num = inFile->read(sampleBuffer, readSize);
 
         // Enter the new samples to the bpm analyzer class
         samples = num / nChannels;
@@ -281,7 +271,6 @@ static void detectBPM(WavInFile *inFile, RunParameters *params)
 }
 
 
-
 int main(const int nParams, const char * const paramStr[])
 {
     WavInFile *inFile;
@@ -299,7 +288,7 @@ int main(const int nParams, const char * const paramStr[])
         // Open input & output files
         openFiles(&inFile, &outFile, params);
 
-        if (params->detectBPM == TRUE)
+        if (params->detectBPM == true)
         {
             // detect sound BPM (and adjust processing parameters
             //  accordingly if necessary)

@@ -5,42 +5,21 @@
 @REM "vcvars32.bat" in VC install directotry before running this one.
 @REM 
 @REM Copyright (c) Olli Parviainen
-@REM File Created: 09/Sep/2003
 @REM
-@REM $Id: make-win.bat 142 2012-04-04 19:55:37Z oparviai $ 
-
-@rem ****************************
-@rem try first for VS6.0 support
-
-@if "%MsDevDir%"=="" goto nomsdevdir
-
-md bin
-md lib
-msdev source\SoundTouch\SoundTouch.dsw /MAKE ALL
-msdev source\SoundStretch\SoundStretch.dsw /MAKE ALL
-
-goto end
-
-:nomsdevdir
-
-@rem **********************************
-@rem try with devenv for VS2003 support
 
 @if "%DevEnvDir%"=="" goto nodevdir
 
-md bin
-md lib
-devenv source\SoundTouch\SoundTouch.vcproj /upgrade
-devenv source\SoundTouch\SoundTouch.vcproj /build debug
-devenv source\SoundTouch\SoundTouch.vcproj /build release
+@rem devenv source\SoundStretch\SoundStretch.sln /upgrade
+devenv source\SoundStretch\SoundStretch.sln /build "Debug|Win32"
+devenv source\SoundStretch\SoundStretch.sln /build "Release|Win32"
+devenv source\SoundStretch\SoundStretch.sln /build "Debug|x64"
+devenv source\SoundStretch\SoundStretch.sln /build "Release|x64"
 
-devenv source\SoundStretch\SoundStretch.vcproj /upgrade
-devenv source\SoundStretch\SoundStretch.vcproj /build debug
-devenv source\SoundStretch\SoundStretch.vcproj /build release
-
-devenv source\SoundTouchDll\SoundTouchDll.vcproj /upgrade
-devenv source\SoundTouchDll\SoundTouchDll.vcproj /build debug
-devenv source\SoundTouchDll\SoundTouchDll.vcproj /build release
+@rem devenv source\SoundTouchDll\SoundTouchDll.sln /upgrade
+devenv source\SoundTouchDll\SoundTouchDll.sln /build "Debug|Win32"
+devenv source\SoundTouchDll\SoundTouchDll.sln /build "Release|Win32"
+devenv source\SoundTouchDll\SoundTouchDll.sln /build "Debug|x64"
+devenv source\SoundTouchDll\SoundTouchDll.sln /build "Release|x64"
 
 @goto end
 
@@ -48,14 +27,15 @@ devenv source\SoundTouchDll\SoundTouchDll.vcproj /build release
 :nodevdir
 
 @echo off
-echo *********************************************************************
+echo ****************************************************************************
 echo **
 echo ** ERROR: Visual Studio path not set.
 echo **
-echo ** Run "vsvars32.bat" or "vcvars32.bat" from Visual Studio installation
-echo ** directory, e.g. "\Program Files\Microsoft Visual Studio\VC98\Bin",
+echo ** Open "tools"->"Developer Command Line" from Visual Studio IDE, or
+echo ** run "vcvars32.bat" from Visual Studio installation dir, e.g.
+echo ** "C:\Program Files (x86)\Microsoft Visual Studio xxx\VC\bin",
 echo ** then try again.
 echo **
-echo *********************************************************************
+echo ****************************************************************************
 
 :end
